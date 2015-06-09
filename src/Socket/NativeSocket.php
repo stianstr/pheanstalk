@@ -56,9 +56,9 @@ class NativeSocket implements Socket
     {
         $history = new WriteHistory(self::WRITE_RETRIES);
 
-        for ($written = 0, $fwrite = 0; $written < strlen($data); $written += $fwrite) {
+        for ($written = 0, $fwrite = 0; $written < $this->strlen($data); $written += $fwrite) {
             $fwrite = $this->_wrapper()
-                ->fwrite($this->_socket, substr($data, $written));
+                ->fwrite($this->_socket, $this->substr($data, $written));
 
             $history->log($fwrite);
 
@@ -87,7 +87,7 @@ class NativeSocket implements Socket
                 throw new Exception\SocketException('fread() returned false');
             }
 
-            $read += strlen($data);
+            $read += $this->strlen($data);
             $parts .= $data;
         }
 
@@ -127,4 +127,15 @@ class NativeSocket implements Socket
     {
         return StreamFunctions::instance();
     }
+
+	private function strlen($string) {
+		//return strlen($string);
+		return mb_strlen($string, '8bit');
+	}
+
+	private function substr($string, $start, $length=null) {
+		//return substr($string, $start, $end);
+		return mb_substr($string, $start, $length, '8bit');
+	}
+
 }
