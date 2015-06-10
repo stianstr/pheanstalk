@@ -1,9 +1,9 @@
 {
-    "name": "pda/pheanstalk",
+    "name": "stianstr/pheanstalk",
     "type": "library",
-    "description": "PHP client for beanstalkd queue",
+    "description": "PHP client for beanstalkd queue (stianstr fork)",
     "keywords": ["beanstalkd"],
-    "homepage": "https://github.com/pda/pheanstalk",
+    "homepage": "https://github.com/stianstr/pheanstalk",
     "license": "MIT",
     "authors": [
         {
